@@ -1,0 +1,139 @@
+# Post Install nanootes
+
+## Software Install Uninstall
+
+```bash
+sudo dnf remove firefox azote anaconda-install-env-deps anaconda-live anacoda dmenu volumeicon
+```
+
+## Screen Resolution and Numlock fix
+
+### Fix resolution in TTY
+Edit grub configuration file
+```bash
+sudo nano /etc/default/grub
+```
+Add
+```content
+GRUB_CMDLINE_LINUX="rhgb quiet video=1920x1080"
+```
+
+Update grub with
+```bash
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+```
+
+### Fix display resolution in lightdm
+Make a script for that
+```bash
+sudo nano /usr/local/bin/lightdm-display-setup.sh
+```
+With contents
+```content
+#!/bin/sh
+xrandr --output Virtual-1 --mode 1920x1080
+```
+Make it executable
+```bash
+sudo chmod +x /usr/local/bin/lightdm-display-setup.sh
+```
+
+
+### Add Num Lock on in light dm 
+Make a script for that
+```bash
+sudo nano /usr/local/bin/lightdm-greeter-setup.sh
+```
+with contents:
+```content
+#!/bin/sh
+/usr/bin/numlockx on
+```
+Make it executable
+```bash
+sudo chmod +x /usr/local/bin/lightdm-greeter-setup.sh
+```
+
+Apply them to `lightdm.conf`
+```bash
+sudo nano /etc/lightdm/lightdm.conf
+```
+
+change the lines in [Seat:*] section
+```
+display-setup-script=/usr/local/bin/lightdm-display-setup.sh
+greeter-setup-script=/usr/local/bin/lightdm-greeter-setup.sh
+```
+
+for Early TTY enable numlock run
+```bash
+sudo grubby --update-kernel=ALL --args="numlock=on"
+```
+
+
+gsettings get org.gnome.desktop.interface gtk-theme
+
+## Fix Enable Audio in kvirt
+Virt (I)->
+Overview-> XML Edit change audio tag to:
+```
+<audio id='1' type='spice'/>
+```
+## Change shell
+```bash
+chsh -s /usr/bin/zsh
+```
+
+
+## Setup pass
+### Install
+```bash
+sudo dnf install pass gnupg2 qrencode
+```
+### Create GPG key if not exist
+```
+gpg --list-secret-keys --keyid-format=long
+gpg --full-generate-key
+```
+Options
+- 1 
+- 4096 
+- 0
+
+### View key ids
+```
+gpg --list-secret-keys
+```
+You see something like 
+```
+ssb   <key> 2026-03-26 [E]
+```
+### Initialize pass
+```
+pass init <key>
+```
+
+### Export keys
+gpg --list-secret-keys --keyid-format=long
+ssb   <key>/<keyId> 2026-03-26 [E]
+
+gpg --export-secret-keys <keyId> > private.key
+gpg --export <keyId> public.key
+
+### Restore old keys
+```bash
+gpg --import public.key
+gpg --import private.key 
+pass init "Key-ID"
+git clone  https://github.com/<user name>/sec ~/.password-store
+```
+
+
+### Install proprietary ffmpeg
+```
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf update
+sudo dnf swap ffmpeg-free ffmpeg --allowerasing
+sudo dnf install x264 x264-libs
+```

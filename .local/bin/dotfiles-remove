@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+DOTFILES="$HOME/i3wm-dotfiles"
+LIST="$DOTFILES/dotfile-paths"
+
+mkdir -p "$DOTFILES"
+touch "$LIST"
+
+for item in "$@"; do
+    abs="$(realpath "$item")"
+    rel="${abs#$HOME/}"
+
+    sed -i "\|^$rel$|d" "$LIST"
+
+    rm -rf "$DOTFILES/$rel"
+
+    notify-send "Hyprland Dotfiles" "\n Removed: $rel\n"
+done
+

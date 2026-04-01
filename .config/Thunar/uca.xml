@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1774252649091597-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Example for a custom action</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>list-add</icon>
+	<name>Add to dotfiles</name>
+	<submenu>Dotfiles</submenu>
+	<unique-id>1774382035579745-1</unique-id>
+	<command>dotfiles-add %F</command>
+	<description>Add to dotfiles</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>package-remove</icon>
+	<name>Remove from dotfiles</name>
+	<submenu>Dotfiles</submenu>
+	<unique-id>1774382105419956-2</unique-id>
+	<command>dotfiles-remove %F</command>
+	<description>Remove from dotfiles</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>org.kde.plasma.systemmonitor.diskusage</icon>
+	<name>Disk Usage Analyser</name>
+	<submenu></submenu>
+	<unique-id>1774382200953132-3</unique-id>
+	<command>terminal -e &quot;dua i $f&quot;</command>
+	<description>Analyze folder usage</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+</actions>

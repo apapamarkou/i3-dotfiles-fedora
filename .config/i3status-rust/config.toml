@@ -1,0 +1,68 @@
+[theme]
+theme = "solarized-dark" # Or "powerline"
+[theme.overrides]
+idle_bg = "#000000"     # Pure Black to match feh
+idle_fg = "#c9d1d9"     # Materia White/Gray
+separator = "<span color='#30363d'>|</span>"
+
+[[block]]
+block = "focused_window"
+[block.format]
+full = " $title.str(max_w:300) |"
+short = " $title.str(max_w:10) |"
+
+[[block]]
+block = "cpu"
+interval = 1
+# Using a blue icon and a subtle bar
+format = " <span color='#58a6ff' size='x-large'></span> $utilization "
+
+[[block]]
+block = "disk_space"
+path = "/"
+info_type = "available"
+interval = 60
+format = " <span color='#58a6ff' size='x-large'>󰋊</span> $available "
+
+[[block]]
+block = "memory"
+format = " <span color='#58a6ff' size='x-large'>󰍛</span> $mem_used_percents% "
+interval = 30
+
+[[block]]
+block = "packages"
+package_manager = ["pacman"]
+interval = 600
+error_interval = 300
+max_retries = 5
+format = " <span color='#58a6ff' size='x-large'></span> $pacman updates available "
+format_singular = "  <span color='#58a6ff' size='x-large'></span> $pacman update available "
+format_up_to_date = "  <span color='#58a6ff' size='x-large'></span> system up to date "
+[block.theme_overrides]
+warning_bg = "#000000"
+warning_fg = "#c9d1d9"
+info_bg = "#000000"
+info_fg = "#c9d1d9"
+critical_bg = "#000000"
+critical_fg = "#c9d1d9"
+[[block.click]]
+button = "left"
+cmd = "rofi-update"
+
+[[block]]
+block = "time"
+interval = 60
+format = " <span color='#58a6ff' size='x-large'>󰥔</span> $timestamp.datetime(f:'%a %d %b  %R') "
+
+[[block]]
+block = "sound"
+driver = "pulseaudio"
+step_width = 3
+format = " <span color='#58a6ff' size='x-large'>󰕾</span> $volume "
+
+[[block]]
+block = "keyboard_layout"
+driver = "xkbevent"
+format = " <span color='#58a6ff' size='x-large'>< /span> $layout "
+
+

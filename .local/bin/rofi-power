@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Options
+options="  Shutdown\n󰜉  Reboot\n󰤄  Suspend\n󰗼  Logout\n  Lock"
+
+# Get selection from rofi
+chosen="$(echo -e "$options" | rofi -dmenu -i -p "Uptime: $(uptime -p | sed 's/up //')" -config ~/.config/rofi/power.rasi)"
+
+# Execute based on selection
+case $chosen in
+    *Shutdown) poweroff ;;
+    *Reboot) reboot ;;
+    *Suspend) systemctl suspend ;;
+    *Logout) i3-msg exit ;;
+    *Lock) lock-screen
+esac

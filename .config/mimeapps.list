@@ -1,0 +1,17 @@
+[Default Applications]
+image/jpeg=feh-viewer.desktop
+image/png=feh-viewer.desktop
+image/gif=feh-viewer.desktop
+image/webp=feh-viewer.desktop
+image/bmp=feh-viewer.desktop
+image/tiff=feh-viewer.desktop
+x-scheme-handler/mailto=brave-browser.desktop
+application/vnd.appimage=org.xfce.mousepad.desktop
+application/xml=kdenlive-25.desktop
+
+[Added Associations]
+application/x-shellscript=org.xfce.mousepad.desktop;
+text/plain=nvim.desktop;org.xfce.mousepad.desktop;
+application/x-desktop=org.xfce.mousepad.desktop;
+application/xml=kdenlive-25.desktop;
+text/html=org.xfce.mousepad.desktop;

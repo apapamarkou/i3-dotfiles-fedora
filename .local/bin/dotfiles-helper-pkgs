@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+OUTDIR="$HOME/i3wm-dotfiles"
+OUTFILE="$OUTDIR/pkg.list"
+
+mkdir -p "$OUTDIR"
+
+echo "Exporting installed packages..."
+dnf repoquery --userinstalled --queryformat '%{name}\n' 2>/dev/null | sort > "$OUTFILE"
+
+echo "Done."
+echo
+echo "Saved: $OUTFILE"
