@@ -12,8 +12,6 @@
 .config/mimeapps.list
 .local/bin/dotfiles-add
 .local/bin/dotfiles-commit
-.local/bin/dotfiles-helper-pkgs
-.local/bin/dotfiles-helper-sync
 .local/bin/dotfiles-remove
 .local/bin/feh-viewer
 .local/bin/fetch

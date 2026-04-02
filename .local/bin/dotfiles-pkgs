@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-OUTDIR="$HOME/i3wm-dotfiles"
-OUTFILE="$OUTDIR/pkg.list"
+DOTFILES="$HOME/i3-dotfiles-fedora"
+OUTFILE="$DOTFILES/pkg.list"
 
-mkdir -p "$OUTDIR"
+mkdir -p "$DOTFILES"
 
 echo "Exporting installed packages..."
 dnf repoquery --userinstalled --queryformat '%{name}\n' 2>/dev/null | sort > "$OUTFILE"

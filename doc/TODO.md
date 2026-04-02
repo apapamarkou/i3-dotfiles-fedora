@@ -137,3 +137,13 @@ sudo dnf update
 sudo dnf swap ffmpeg-free ffmpeg --allowerasing
 sudo dnf install x264 x264-libs
 ```
+
+### Install grub btrfs
+```bash
+sudo dnf install git make
+sudo ln -s /boot/grub2 /boot/grub
+git clone https://github.com/Antynea/grub-btrfs.git
+cd grub-btrfs
+sudo make install
+sudo systemctl enable grub-btrfsd
+```

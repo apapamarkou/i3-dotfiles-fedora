@@ -1,4 +1,4 @@
-export DISTRO_NAME="YoUNiX"
+export DISTRO_NAME="UNiX"
 export PATH="$HOME/.local/bin:$PATH"
 
 export EDITOR=micro
@@ -29,3 +29,6 @@ export NNN_OPTS="adeHx"
 export NNN_COLORS="2345"
 export NNN_PLUG='a:dotfiles-add;r:dotfiles-remove'
 export NNN_FIFO=/tmp/nnn.fifo
+
+export PS1='$ '
+

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOTFILES="$HOME/i3wm-dotfiles"
+DOTFILES="$HOME/i3-dotfiles-fedora"
 LIST="$DOTFILES/dotfile-paths"
 
 mkdir -p "$DOTFILES"
@@ -14,6 +14,6 @@ for item in "$@"; do
 
     rm -rf "$DOTFILES/$rel"
 
-    notify-send "Hyprland Dotfiles" "\n Removed: $rel\n"
+    notify-send "I3 Dotfiles" "\n Removed: $rel\n"
 done
 

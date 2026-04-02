@@ -45,7 +45,7 @@ exec --no-startup-id /usr/libexec/lxqt-policykit-agent &
 exec --no-startup-id xfce4-clipman
 # --> Night Light
 exec --no-startup-id nightlight
-
+# --> Compositor
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
 ####################################################

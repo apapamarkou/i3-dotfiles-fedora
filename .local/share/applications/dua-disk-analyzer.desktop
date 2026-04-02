@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Dua Disk Analyzer
+Exec=terminal -e "/usr/bin/dua i %f"
+NoDisplay=false
+Terminal=false
+Icon=drive-harddisk
+Categories=System;FileTools;Utility;
+Keywords=disk;usage;analyzer;cleanup;interactive;
+Comment=Analyze disk usage and delete files interactively   

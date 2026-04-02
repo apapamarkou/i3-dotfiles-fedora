@@ -231,6 +231,7 @@ passwdqc
 pavucontrol
 pciutils
 perl-Digest-SHA
+picom
 pinfo
 pipewire-alsa
 pipewire-config-raop
@@ -306,7 +307,6 @@ usbutils
 util-linux
 vim-minimal
 virtualbox-guest-additions
-volumeicon
 wget2-wget
 which
 whois
