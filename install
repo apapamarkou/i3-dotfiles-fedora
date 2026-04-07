@@ -78,5 +78,6 @@ gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
 EOF
 dnf install -y anydesk
 
+pip install pulsemixer
 
 echo "✅ Done!"

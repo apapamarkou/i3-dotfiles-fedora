@@ -15,7 +15,7 @@ feh --geometry 640x400 \
     --scale-down \
     --image-bg "#000000" \
     --bg-color "#000000" \
-    --class "wp_picker" \
+    --class "Wallpapers" \
     --font "Inter/12" \
     --info "echo 'ENTER: Set as wallpaper | ARROWS: Browse | Q or ESC: Quit'" \
     --action "$ACTION" \

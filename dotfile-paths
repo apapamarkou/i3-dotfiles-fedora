@@ -12,8 +12,6 @@
 .config/mimeapps.list
 .local/bin/dotfiles-add
 .local/bin/dotfiles-commit
-.local/bin/dotfiles-helper-pkgs
-.local/bin/dotfiles-helper-sync
 .local/bin/dotfiles-remove
 .local/bin/feh-viewer
 .local/bin/fetch
@@ -44,3 +42,7 @@ Pictures/Wallpapers
 .local/share/applications/nnn-files.desktop
 .local/share/applications/wallpapers.desktop
 .config/picom
+.local/bin/prtscr
+.local/bin/pulsemixer
+.local/bin/shortcuts
+.bash_profile

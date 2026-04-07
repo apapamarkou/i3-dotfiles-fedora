@@ -114,11 +114,16 @@ pass init <key>
 ```
 
 ### Export keys
+
+```
 gpg --list-secret-keys --keyid-format=long
 ssb   <key>/<keyId> 2026-03-26 [E]
+```
 
+```
 gpg --export-secret-keys <keyId> > private.key
 gpg --export <keyId> public.key
+```
 
 ### Restore old keys
 ```bash
