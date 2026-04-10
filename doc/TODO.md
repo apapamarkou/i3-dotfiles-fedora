@@ -88,7 +88,18 @@ chsh -s /usr/bin/zsh
 ## Setup pass
 ### Install
 ```bash
-sudo dnf install pass gnupg2 qrencode
+sudo dnf install pass gnupg2 qrencode pinentry-curses pinentry-qt
+```
+edit 
+```bash
+micro ~/.gnupg/gpg-agent.conf
+```
+new file with
+```content
+allow-loopback-pinentry
+default-cache-ttl 600
+max-cache-ttl 7200
+pinentry-program /usr/bin/pinentry-qt
 ```
 ### Create GPG key if not exist
 ```
@@ -106,11 +117,12 @@ gpg --list-secret-keys
 ```
 You see something like 
 ```
-ssb   <key> 2026-03-26 [E]
+sec   rsa4096 2026-03-26 [SC]
+      648241D3F622190007CB83886E076222DCA05296
 ```
 ### Initialize pass
 ```
-pass init <key>
+pass init 648241D3F622190007CB83886E076222DCA05296
 ```
 
 ### Export keys
