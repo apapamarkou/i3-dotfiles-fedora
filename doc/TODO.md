@@ -164,3 +164,32 @@ cd grub-btrfs
 sudo make install
 sudo systemctl enable grub-btrfsd
 ```
+
+# GIT using ssh
+## Setup
+```
+ssh-keygen -t ed25519 -C "papamarkoua@gmail.com"
+```
+[Enter] in all questions
+```
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+Get the public key
+```
+cat ~/.ssh/id_ed25519.pub
+```
+Add to GitHub (Settings → SSH keys)
+
+## Usage
+Clone with SSH (όχι HTTPS)
+```
+git clone git@github.com:username/repo.git
+```
+## Basic workflow
+```
+cd repo
+git add .
+git commit -m "Updates"
+git push
+```
