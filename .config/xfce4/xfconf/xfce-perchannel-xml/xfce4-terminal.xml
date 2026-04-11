@@ -28,5 +28,5 @@
   <property name="font-name" type="string" value="JetBrainsMonoNL Nerd Font 12"/>
   <property name="misc-confirm-close" type="bool" value="false"/>
   <property name="misc-copy-on-select" type="bool" value="true"/>
-  <property name="background-darkness" type="double" value="0.80000000000000004"/>
+  <property name="background-darkness" type="double" value="0.90000000000000002"/>
 </channel>

@@ -52,7 +52,8 @@ curl -o '/tmp/hblock.#1' 'https://raw.githubusercontent.com/hectorm/hblock/v1.6.
   && sudo chmod 644 /etc/systemd/system/hblock.{service,timer} \
   && sudo systemctl daemon-reload \
   && sudo systemctl enable hblock.timer \
-  && sudo systemctl start hblock.timer
+  && sudo systemctl start hblock.timer \
+  && hblock
 
 echo -e "\n\n📦 Installing additional apps...\n"
 echo -e "\e[33m⚠ Some of these may fail if the app is already installed or if there are issues with the install script. Check the output for details.\e[0m"

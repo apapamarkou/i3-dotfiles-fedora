@@ -86,6 +86,7 @@ ffmpeg
 figlet
 file
 filesystem
+firewall-applet
 firewalld
 fpaste
 fprintd-pam
@@ -164,6 +165,7 @@ kbd-legacy
 kernel
 kernel-core
 kernel-modules
+kernel-modules-core
 kernel-modules-extra
 kexec-tools
 less
@@ -198,6 +200,7 @@ mpage
 mpv
 mt7xxx-firmware
 mtr
+naps2
 ncdu
 ncurses
 neovim
@@ -232,6 +235,7 @@ pavucontrol
 pciutils
 perl-Digest-SHA
 picom
+pinentry-qt
 pinfo
 pipewire-alsa
 pipewire-config-raop

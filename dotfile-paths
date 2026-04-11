@@ -46,3 +46,5 @@ Pictures/Wallpapers
 .local/bin/pulsemixer
 .local/bin/shortcuts
 .bash_profile
+.local/bin/i3power
+.local/bin/i3update

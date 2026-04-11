@@ -1,0 +1,56 @@
+#!/bin/bash
+
+CACHE_FILE="/tmp/dnf-updates-count"
+
+# Function to refresh the cache (intended to be run by a timer or background process)
+refresh_cache() {
+    # dnf check-update returns 100 if updates are available, 0 if not, 1 on error
+    count=$(dnf check-update -q | grep -c '^[a-zA-Z0-9]')
+    echo "$count" > "$CACHE_FILE"
+}
+
+# Function for Polybar output
+show_mini() {
+    # Refresh cache if it doesn't exist or is older than 1 hour (3600 seconds)
+    if [[ ! -f "$CACHE_FILE" || \
+          $(($(date +%s) - $(stat -c %Y "$CACHE_FILE"))) -gt 3600 ]]; then
+        refresh_cache
+    fi
+
+    count=$(cat "$CACHE_FILE" 2>/dev/null || echo "0")
+
+    if [ "$count" -gt 0 ]; then
+        echo "󱑤 $count" # Download icon + number
+    else
+        echo "󰄲" # Check icon for no updates
+    fi
+}
+
+# Function to launch the update process
+launch_update() {
+    count=$(cat "$CACHE_FILE" 2>/dev/null || echo "0")
+    
+    if [ "$count" -gt 0 ]; then
+        terminal -t updateWindow -c updateWindow -l -s 120x24 -e 'sudo dnf upgrade'
+		i3update refresh
+    else
+        # If no updates, just show current packages or general info
+        terminal -t pkgWindow -c pkgWindow -l -s 140x34 -e pkg
+    fi
+}
+
+case "$1" in
+    mini)
+        show_mini
+        ;;
+    launch)
+        launch_update
+        ;;
+    refresh)
+        refresh_cache
+        ;;
+    *)
+        echo "Usage: i3update {mini|launch|refresh}"
+        exit 1
+        ;;
+esac
