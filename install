@@ -18,7 +18,7 @@ sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfre
 sudo dnf update
 
 echo "📦 Installing repo packages..."
-sudo dnf install -y < pkg.list
+sudo dnf install -y --allowerasing < pkg.list
 
 echo "⚙️ Running post-install scripts..."
 for script in post-install-scripts/*; do
