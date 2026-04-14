@@ -75,6 +75,8 @@ curl -sS https://starship.rs/install.sh | sh
 curl -fsSL https://raw.githubusercontent.com/apapamarkou/appimage-integrator/main/install | bash
 curl -sSL https://raw.githubusercontent.com/apapamarkou/lazy-weather/main/install | bash
 curl -sSL https://raw.githubusercontent.com/apapamarkou/lazy-snapper/main/install | bash
+curl -fsSL https://raw.githubusercontent.com/apapamarkou/lazy-package/main/install | bash
+
 curl -fsS https://dl.brave.com/install.sh | sh
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 sudo dnf update
@@ -90,9 +92,13 @@ gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
 EOF
 sudo dnf install -y anydesk
 
-curl -L -o /tmp/JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip && mkdir -p ~/.local/share/fonts && unzip -o /tmp/JetBrainsMono.zip -d ~/.local/share/fonts && rm /tmp/JetBrainsMono.zipls~/.local/share/fonts
-
-
 pip install pulsemixer
 
+curl -L -o /tmp/JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip && mkdir -p ~/.local/share/fonts && unzip -o /tmp/JetBrainsMono.zip -d ~/.local/share/fonts && rm /tmp/JetBrainsMono.zipls~/.local/share/fonts
+
 echo "✅ Done!"
+echo "the system is going to reboot in 5 seconds."
+echo "press Control+C to abort"
+sleep 5
+reboot
+
