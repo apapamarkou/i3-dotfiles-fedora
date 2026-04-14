@@ -90,6 +90,9 @@ gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
 EOF
 sudo dnf install -y anydesk
 
+curl -L -o /tmp/JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip && mkdir -p ~/.local/share/fonts && unzip -o /tmp/JetBrainsMono.zip -d ~/.local/share/fonts && rm /tmp/JetBrainsMono.zipls~/.local/share/fonts
+
+
 pip install pulsemixer
 
 echo "✅ Done!"
