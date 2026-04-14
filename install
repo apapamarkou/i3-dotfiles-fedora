@@ -2,7 +2,7 @@
 
 set -e
 
-DOTFILES="$HOME/i3wm-dotfiles"
+DOTFILES="$HOME/i3-dotfiles-fedora"
 TMP="$(mktemp -d)"
 
 trap 'rm -rf "$TMP"' EXIT
@@ -18,7 +18,7 @@ sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfre
 sudo dnf update
 
 echo "📦 Installing repo packages..."
-sudo dnf install -y --allowerasing < pkg.list
+grep -vE '^\s*(#|$)' pkg.list | xargs sudo dnf -y install --allowerasing --skip-unavailable
 
 echo "⚙️ Running post-install scripts..."
 for script in post-install-scripts/*; do
@@ -50,6 +50,12 @@ done < "$DOTFILES/dotfile-paths"
 
 
 echo -e "\n\n📦 Installing hblock systemd timer...\n"
+curl -o /tmp/hblock 'https://raw.githubusercontent.com/hectorm/hblock/v3.5.1/hblock' \
+  && echo 'd010cb9e0f3c644e9df3bfb387f42f7dbbffbbd481fb50c32683bbe71f994451  /tmp/hblock' | shasum -c \
+  && sudo mv /tmp/hblock /usr/local/bin/hblock \
+  && sudo chown 0:0 /usr/local/bin/hblock \
+  && sudo chmod 755 /usr/local/bin/hblock
+
 curl -o '/tmp/hblock.#1' 'https://raw.githubusercontent.com/hectorm/hblock/v1.6.2/resources/systemd/hblock.{service,timer}' \
   && echo '16d547d11d1eff1cd7109ef8436a899f2e868992b8d9de757e65d4ab94f64fe7  /tmp/hblock.service' | shasum -c \
   && echo '79ecc28c13b2489400bd5ddc0ee61ddaf6c3225acb1d54b5cb4026f822ae60e8  /tmp/hblock.timer' | shasum -c \
@@ -70,12 +76,11 @@ curl -fsSL https://raw.githubusercontent.com/apapamarkou/appimage-integrator/mai
 curl -sSL https://raw.githubusercontent.com/apapamarkou/lazy-weather/main/install | bash
 curl -sSL https://raw.githubusercontent.com/apapamarkou/lazy-snapper/main/install | bash
 curl -fsS https://dl.brave.com/install.sh | sh
-sudo rpm --import -y https://packages.microsoft.com/keys/microsoft.asc &&
-echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 sudo dnf update
 sudo dnf install -y code
 sudo dnf install -y https://download.cdn.viber.com/desktop/Linux/viber.rpm
-sudo cat > /etc/yum.repos.d/AnyDesk-Fedora.repo << "EOF" 
+sudo tee /etc/yum.repos.d/AnyDesk-Fedora.repo << "EOF" 
 [anydesk]
 name=AnyDesk Fedora - stable
 baseurl=http://rpm.anydesk.com/fedora/$basearch/
@@ -83,7 +88,7 @@ gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
 EOF
-dnf install -y anydesk
+sudo dnf install -y anydesk
 
 pip install pulsemixer
 
