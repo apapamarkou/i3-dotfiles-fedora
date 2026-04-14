@@ -11,7 +11,7 @@
 # Author: Andrianos Papamarkou
 # Email: papamarkoua@gmail.com
 
-sudo pacman -S --needed --noconfirm fzf
+sudo dnf install -y fzf
 clear
 
 echo "Locale Selector"
@@ -21,51 +21,52 @@ echo "This script will help you select and configure your locale."
 echo "Your current locale is: $(locale | grep LC_CTYPE= | cut -d'=' -f2)"
 echo
 
-# Confirm before proceeding
 read -p "Do you want to change it? (Y/n) " -n 1 -r
 echo
 
-if [[ $REPLY =~ ^[Nn]$ ]]
-then
+if [[ $REPLY =~ ^[Nn]$ ]]; then
     exit 1
 fi
 
-# Select locale from /etc/locale.gen using fzf
-selected_locale=$(grep "^.*UTF-8" /etc/locale.gen | sed 's/^#//' | fzf --prompt="Select locale: " --height=100% --layout=reverse)
+# List available locales on Fedora
+selected_locale=$(localectl list-locales | fzf --prompt="Select locale: " --height=100% --layout=reverse)
 
 if [ -z "$selected_locale" ]; then
     echo "No locale selected. Exiting."
     exit 1
 fi
 
-# Extract locale code (e.g., "el_GR.UTF-8" from "el_GR.UTF-8 UTF-8")
-locale_code=$(echo "$selected_locale" | awk '{print $1}')
-pattern="#$selected_locale"
+# Install the corresponding glibc langpack
+lang_code=$(echo "$selected_locale" | cut -d'_' -f1)
+sudo dnf install -y "glibc-langpack-${lang_code}"
 
-# Uncomment the selected locale in /etc/locale.gen
-sudo sed -i "/^${pattern}/s/^#//" /etc/locale.gen
-echo "Uncommented: $selected_locale"
+PROFILE="$HOME/.profile"
+MARKER_START="# locale-config-start"
+MARKER_END="# locale-config-end"
 
-sudo locale-gen
+# Remove existing locale block if present
+if grep -q "$MARKER_START" "$PROFILE" 2>/dev/null; then
+    sed -i "/$MARKER_START/,/$MARKER_END/d" "$PROFILE"
+fi
 
-# Create /etc/locale.conf with selected locale
-sudo tee /etc/locale.conf > /dev/null << EOF
-LANG=en_US.UTF-8
-LC_CTYPE="$locale_code"
-LC_NUMERIC="$locale_code"
-LC_TIME="$locale_code"
-LC_COLLATE=C
-LC_MONETARY="$locale_code"
-LC_MESSAGES="en_US.UTF-8"
-LC_PAPER="$locale_code"
-LC_NAME="$locale_code"
-LC_ADDRESS="$locale_code"
-LC_TELEPHONE="$locale_code"
-LC_MEASUREMENT="$locale_code"
-LC_IDENTIFICATION="$locale_code"
-LC_ALL=
+cat >> "$PROFILE" << EOF
+$MARKER_START
+export LANG=en_US.UTF-8
+export LC_CTYPE="$selected_locale"
+export LC_NUMERIC="$selected_locale"
+export LC_TIME="$selected_locale"
+export LC_COLLATE=C
+export LC_MONETARY="$selected_locale"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_PAPER="$selected_locale"
+export LC_NAME="$selected_locale"
+export LC_ADDRESS="$selected_locale"
+export LC_TELEPHONE="$selected_locale"
+export LC_MEASUREMENT="$selected_locale"
+export LC_IDENTIFICATION="$selected_locale"
+export LC_ALL=
+$MARKER_END
 EOF
 
-echo "/etc/locale.conf updated with locale: $locale_code"
+echo "~/.profile updated with locale: $selected_locale"
 sleep 2
-

@@ -19,29 +19,29 @@ echo
 echo "This script will create a debian-like script named 'update-grub' in the /usr/sbin directory for easy update the grub boot loader."
 echo
 
-# Confirmation
 read -p "Do you want this feat? (Y/n) " -n 1
 echo
-if [[ $REPLY =~ ^[Nn]$ ]]
-then
+if [[ $REPLY =~ ^[Nn]$ ]]; then
     exit 1
 fi
 
-# Define the target file
+# Detect grub.cfg path (EFI or BIOS)
+if [ -d /sys/firmware/efi ]; then
+    grub_cfg="/boot/efi/EFI/fedora/grub.cfg"
+else
+    grub_cfg="/boot/grub2/grub.cfg"
+fi
+
 target_file="/usr/sbin/update-grub"
 
-# Create the file with the desired content
-sudo tee "$target_file" > /dev/null << 'EOF'
+sudo tee "$target_file" > /dev/null << EOF
 #!/bin/sh
 set -e
-exec grub-mkconfig -o /boot/grub/grub.cfg "$@"
+exec grub2-mkconfig -o $grub_cfg "\$@"
 EOF
 
-# Make the script executable
-sudo chmod +x "$target_file"
-
-sudo chown root:root /usr/sbin/update-grub
-sudo chmod 755 /usr/sbin/update-grub
+sudo chown root:root "$target_file"
+sudo chmod 755 "$target_file"
 
 echo "$target_file created and made executable."
 sleep 2
