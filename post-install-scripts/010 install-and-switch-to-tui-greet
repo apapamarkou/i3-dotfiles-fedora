@@ -31,8 +31,12 @@ if [[ $confirm =~ ^[Nn]$ ]]; then
 fi
 
 # Install greetd
-sudo dnf install -y greetd
+sudo dnf install -y greetd tuigreet
 
+if ! id greeter >/dev/null 2>&1; then
+    echo "Creating greeter user..."
+    sudo useradd -M -r -s /sbin/nologin greeter
+fi
 
 # Disable all possible display managers
 echo "Disabling all possible display managers..."
@@ -48,7 +52,7 @@ sudo tee /etc/greetd/config.toml > /dev/null << EOF
 vt = 1
 
 [default_session]
-command = "agreety --cmd 'startx /usr/bin/env i3'"
+command = "/usr/bin/tuigreet --remember"
 user = "greeter"
 EOF
 
