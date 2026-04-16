@@ -1,17 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# __   __    _   _ _   _ ___  __
-# \ \ / /__ | | | | \ | (_) \/ /
-#  \ V / _ \| | | |  \| | |\  / 
-#   | | (_) | |_| | |\  | |/  \ 
-#   |_|\___/ \___/|_| \_|_/_/\_\
-#
 # Lisence GPL3
-# Homepage: https://github.com/apapamarkou/younix
 # Author: Andrianos Papamarkou
 # Email: papamarkoua@gmail.com
 
-# This script configures Git with user details
 clear
 
 echo "Git configuration"
@@ -21,9 +13,9 @@ echo "If you are going to use Git, you have to configure it."
 echo
 
 # Confirmation. Default answare is [y]
-read -p "Do you want to configure Git? (Y/n) " confirm
+read -p "Do you want to configure Git? (Y/n) " -n 1 -r
 
-if [[ $confirm =~ ^[Nn]$ ]]; then
+if [[ $REPLY =~ ^[Nn]$ ]]; then
     echo "Git configuration skipped."
     exit 1
 fi

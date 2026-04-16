@@ -25,7 +25,7 @@ for script in post-install-scripts/*; do
     [ -x "$script" ] && "$script" || echo -e "\e[33m⚠ Script failed: $script\e[0m"
 done
 
-echo "📁 Installing dotfiles..."
+clear && echo "📁 Installing dotfiles..."
 while read -r rel; do
     [ -z "$rel" ] && continue
 
@@ -48,27 +48,6 @@ while read -r rel; do
     echo -e "\e[32m✔ Installed $rel\e[0m"
 done < "$DOTFILES/dotfile-paths"
 
-
-echo -e "\n\n📦 Installing hblock systemd timer...\n"
-curl -o /tmp/hblock 'https://raw.githubusercontent.com/hectorm/hblock/v3.5.1/hblock' \
-  && echo 'd010cb9e0f3c644e9df3bfb387f42f7dbbffbbd481fb50c32683bbe71f994451  /tmp/hblock' | shasum -c \
-  && sudo mv /tmp/hblock /usr/local/bin/hblock \
-  && sudo chown 0:0 /usr/local/bin/hblock \
-  && sudo chmod 755 /usr/local/bin/hblock
-
-curl -o '/tmp/hblock.#1' 'https://raw.githubusercontent.com/hectorm/hblock/v1.6.2/resources/systemd/hblock.{service,timer}' \
-  && echo '16d547d11d1eff1cd7109ef8436a899f2e868992b8d9de757e65d4ab94f64fe7  /tmp/hblock.service' | shasum -c \
-  && echo '79ecc28c13b2489400bd5ddc0ee61ddaf6c3225acb1d54b5cb4026f822ae60e8  /tmp/hblock.timer' | shasum -c \
-  && sudo mv /tmp/hblock.{service,timer} /etc/systemd/system/ \
-  && sudo chown root:root /etc/systemd/system/hblock.{service,timer} \
-  && sudo chmod 644 /etc/systemd/system/hblock.{service,timer} \
-  && sudo systemctl daemon-reload \
-  && sudo systemctl enable hblock.timer \
-  && sudo systemctl start hblock.timer \
-  && hblock
-
-echo -e "\n\n📦 Installing additional apps...\n"
-echo -e "\e[33m⚠ Some of these may fail if the app is already installed or if there are issues with the install script. Check the output for details.\e[0m"
 
 echo -e "\n\n📦 Installing Starship, AppImage Integrator, Lazy Weather, Lazy Snapper, Brave, VS Code, Viber, and AnyDesk...\n"
 curl -sS https://starship.rs/install.sh | sh
@@ -95,7 +74,8 @@ sudo dnf install -y anydesk
 
 pip install pulsemixer
 
-curl -L -o /tmp/JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip && mkdir -p ~/.local/share/fonts && unzip -o /tmp/JetBrainsMono.zip -d ~/.local/share/fonts && rm /tmp/JetBrainsMono.zipls~/.local/share/fonts
+curl -L -o /tmp/JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip && mkdir -p ~/.local/share/fonts && unzip -o /tmp/JetBrainsMono.zip -d ~/.local/share/fonts && rm /tmp/JetBrainsMono.zip
+
 
 echo "✅ Done!"
 echo "the system is going to reboot in 5 seconds."

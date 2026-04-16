@@ -1,15 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# __   __    _   _ _   _ ___  __
-# \ \ / /__ | | | | \ | (_) \/ /
-#  \ V / _ \| | | |  \| | |\  / 
-#   | | (_) | |_| | |\  | |/  \ 
-#   |_|\___/ \___/|_| \_|_/_/\_\
-#
 # Lisence GPL3
-# Homepage: https://github.com/apapamarkou/younix
 # Author: Andrianos Papamarkou
-# Email: papamarkoua@gmail.com
+# Email: papamarkoua@gmail.com 
 
 # This script installs and configures greetd with tuigreet
 clear
@@ -22,9 +15,9 @@ echo "It will disable all possible display managers and enable greetd."
 echo
 
 # Confirmation. Default answare is [y]
-read -p "Do you want to install TUI Greet ? (Y/n) " confirm
+read -p "Do you want to install TUI Greet ? (Y/n) " -n 1 -r
 
-if [[ $confirm =~ ^[Nn]$ ]]; then
+if [[ $REPLY =~ ^[Nn]$ ]]; then
     echo "Installation skipped."
     sleep 2
     exit 1
