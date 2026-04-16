@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Path to the list we just generated
 EMOJI_FILE="$HOME/.config/rofi/emojis.txt"

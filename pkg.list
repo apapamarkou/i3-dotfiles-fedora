@@ -13,6 +13,7 @@ arandr
 at
 atheros-firmware
 attr
+audacious-plugins-ffaudio
 audit
 authselect
 b43-fwcutter
@@ -23,6 +24,7 @@ bash-completion
 bats
 bc
 bind-utils
+black
 bluez-cups
 brave-browser
 brcmfmac-firmware
@@ -254,6 +256,7 @@ psacct
 pulseaudio-utils
 python3-i3ipc
 python3-pip
+python3-pyqt6
 qcom-wwan-firmware
 qemu-guest-agent
 qpwgraph
@@ -269,6 +272,7 @@ rpmfusion-free-release
 rpmfusion-nonfree-release
 rsync
 rsyslog
+ruff
 samba-client
 selinux-policy-targeted
 setroubleshoot

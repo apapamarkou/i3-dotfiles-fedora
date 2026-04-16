@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 SCREENSHOT_DIR="$HOME/Pictures/Screenshots"
 VIDEO_DIR="$HOME/Videos/Screencasts"

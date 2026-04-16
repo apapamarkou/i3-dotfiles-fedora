@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 IFS=, read -r LAT LON < <(curl -s https://ipinfo.io/loc)
 export LAT LON
 CITY=$(curl -s https://ipinfo.io/city)
