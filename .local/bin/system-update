@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+figlet "System Update"
+echo
+sudo dnf upgrade
+echo
+read -n 1 -s -r -p "Press any key to close..."

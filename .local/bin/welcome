@@ -1,0 +1,45 @@
+#!/bin/bash
+
+WELCOME_SHOW="$HOME/.config/welcome.show"
+
+# If called with 'startup', only continue if welcome.show exists
+if [[ "$1" == "startup" ]] && [[ ! -f "$WELCOME_SHOW" ]]; then
+  exit 0
+fi
+
+while [[ "$choice" != "exit" ]]; do
+
+  # Toggle label based on current state
+  if [[ -f "$WELCOME_SHOW" ]]; then
+    TOGGLE="🔕 Don't show Welcome on startup"
+  else
+    TOGGLE="🔔 Show Welcome on startup"
+  fi
+
+  options="🚀 Update System\n📦 Configure BTRFS System Snapshots\n⚙️  Set a Wallpaper\n⚙️  Learn the Keybindings\n📖 Top Bar Overview\n📖 Unix Manual Pages\n📖 Explore the Unix Manual Pages\n${TOGGLE}\n❓ Exit"
+
+  choice=$(echo -e "$options" | rofi -dmenu \
+    -i \
+    -p "Welcome" \
+    -theme ~/.config/rofi/welcome.rasi)
+
+  case "$choice" in
+    *Update*) terminal -t updateWindow -c updateWindow -l -s 120x24 -e system-update ;;
+    *Snapshots*) terminal -t snapshotsWindow -c snapshotsWindow -l -s 140x24 -e snapshots ;;
+    *Overview*) feh -Zr --scale-down --class FehViewerOverviews -g 1280x720 --start-at "$HOME/Documents/Manual/TopBar/Overview/001_Applications_Button.jpg" ;;
+    *Keybindings*) terminal -t Help -c Help -s 100x30 -l -e shortcuts ;;
+    *Manual*) terminal -t Help -c Help -s 140x35 -l -e lman commands  ;;
+    *Wallpaper*) wallpapers ;;
+    *startup*)
+      if [[ -f "$WELCOME_SHOW" ]]; then
+        rm -f "$WELCOME_SHOW"
+      else
+        touch "$WELCOME_SHOW"
+      fi
+      ;;
+    *Exit*) break;;
+    *) break ;;
+  esac
+done
+
+notify-send "Tip" "Press ? anytime for this menu" 

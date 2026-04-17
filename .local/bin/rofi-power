@@ -1,19 +1,24 @@
 #!/usr/bin/env bash
 
 # Define options with icons
-options="  Shutdown\n󰜉  Reboot\n󰤄  Suspend\n󰗼  Logout\n  Lock"
-
+options="  \n 󰜉 \n 󰤄 \n 󰗼 \n  "
 # Get selection from rofi
 # Using uptime for the prompt as in your original script
 chosen=$(echo -e "$options" | rofi -dmenu -i \
     -p "Uptime: $(uptime -p | sed 's/up //')" \
     -config ~/.config/rofi/power.rasi)
 
+chosen=$(echo "$chosen" | xargs)
+
 # Extract the keyword (lowercase) to send to the backend
 case "$chosen" in
-    *Shutdown) i3power shutdown ;;
-    *Reboot)   i3power reboot   ;;
-    *Suspend)  i3power suspend  ;;
-    *Logout)   i3power logout   ;;
-    *Lock)     i3power lock     ;;
+    "") sleep 0.5 && i3power shutdown ;;
+    "󰜉") sleep 0.5 && i3power reboot   ;;
+    "󰤄") sleep 0.5 && i3power   ;;
+    "󰗼") sleep 0.5 && i3power logout   ;;
+    "") sleep 0.5 && i3power lock     ;;
+    *) echo "No match for: [$chosen]" ;; # Debugging
 esac
+
+
+echo "[$chosen]"

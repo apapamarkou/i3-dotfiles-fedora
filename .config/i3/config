@@ -2,7 +2,7 @@
 ## Setup
 ###############################################
 
-set $display_help terminal -t Help -c Help -s 100x30 -l -e shortcuts
+set $display_keys terminal -t Help -c Help -s 100x30 -l -e shortcuts
 set $app_launcher rofi -show drun
 set $emoji_picker rofi-emoji
 set $file_manager terminal -t Files -c Files -e nnn
@@ -86,8 +86,11 @@ exec --no-startup-id nightlight
 # ----------> X Compositor <--------------------
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
-# ----------> Firewall Applet <--------------------
+# ----------> Firewall Applet <-----------------
 exec --no-startup-id firewall-applet
+
+# ----------> Welcome <--------------------------
+exec --no-startup-id welcome startup
 
 ####################################################
 ## Use pactl to adjust volume in PulseAudio.
@@ -110,7 +113,8 @@ bindsym $mod+w exec wallpapers
 bindsym $mod+Shift+Return exec $file_manager
 bindsym $mod+d exec --no-startup-id $app_launcher
 bindsym $mod+e exec --no-startup-id $emoji_picker
-bindsym $mod+h exec $display_help
+bindsym $mod+b exec $display_keys
+bindsym Shift+slash exec welcome
 # bindsym $mod+x exec --no-startup-id rofi-power
 # bindsym Print exec --no-startup-id rofi-grab
 
@@ -305,7 +309,9 @@ for_window [class="CalcurseWindow"] floating enable, move position center
 for_window [class="weatherWindow"] floating enable, move position center
 for_window [class="pkgWindow"] floating enable, move position center
 for_window [class="updateWindow"] floating enable, move position center
+for_window [class="snapshotsWindow"] floating enable, move position center
 
+for_window [class="FehViewerOverviews"] floating enable, move position center
 
 
 

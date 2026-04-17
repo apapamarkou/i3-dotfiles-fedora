@@ -48,3 +48,7 @@ Pictures/Wallpapers
 .bash_profile
 .local/bin/i3power
 .local/bin/i3update
+.config/welcome.show
+.local/bin/welcome
+.local/bin/system-update
+Documents/Manual

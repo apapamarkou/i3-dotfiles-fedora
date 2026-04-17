@@ -1,30 +1,69 @@
-/** --- MICRO POWER MENU --- **/
-@import "config.rasi" /* Import your main colors */
+/* --- FULLSCREEN POWER MENU --- */
+@import "config.rasi"
 
-window {
-    width:            250px;    /* Much narrower */
-    height:           0px;    /* Short and sweet */
-    border:           2px;
-    border-color:     @blue;
-    location:         center;
-    anchor:           center;
+* {
+    bg:         #0f111a;
+    bg-alt:     #1a1d2b;
+    fg:         #cdd6f4;
+    accent:     #89b4fa;
 }
 
+window {
+    fullscreen: true;
+    background-color: @bg;
+    border: 0;
+}
+
+/* ΚΑΘΕΤΟ centering */
 mainbox {
-    children: [ listview ];
+    children: [ dummy, listview, dummy ];
+    orientation: vertical;
+
+    /* ΟΡΙΖΟΝΤΙΟ centering hack */
+    padding: 0px 300px;
+}
+
+dummy {
+    expand: true;
 }
 
 listview {
+    columns: 1;
     lines: 5;
-    fixed-height: false;
-    dynamic: true;
-    scrollbar: false;
+    layout: horizontal;
+
+    spacing: 40px;
+
+    expand: false;
+        width: 100%;
+
 }
 
 element {
-    padding: 10px;
+    background-color: @bg-alt;
+    border-radius: 25px;
+
+    padding: 50px;
+    margin: 10px;
+
+    orientation: vertical;
+    children: [ element-text ];
+}
+
+element selected {
+    background-color: @accent;
+    border: 2px solid;
 }
 
 element-text {
-    horizontal-align: 0; /* Center the text for a "pill" look */
+    font: "Symbols Nerd Font 42";
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+
+    margin: -8px 0px 0px 0px;
 }
+
+prompt {
+    enabled: false;
+}
+

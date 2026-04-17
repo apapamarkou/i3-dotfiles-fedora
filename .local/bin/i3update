@@ -31,7 +31,8 @@ launch_update() {
     count=$(cat "$CACHE_FILE" 2>/dev/null || echo "0")
     
     if [ "$count" -gt 0 ]; then
-        terminal -t updateWindow -c updateWindow -l -s 120x24 -e 'sudo dnf upgrade'
+        # open terminal to run the update command and press any key to close
+        terminal -t updateWindow -c updateWindow -l -s 120x24 -e 'sudo dnf upgrade -y; read -n 1 -s -r -p "\nDone!\nPress any key to close..."'
 		i3update refresh
     else
         # If no updates, just show current packages or general info
