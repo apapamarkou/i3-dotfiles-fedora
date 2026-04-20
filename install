@@ -55,7 +55,7 @@ curl -fsSL https://raw.githubusercontent.com/apapamarkou/appimage-integrator/mai
 curl -sSL https://raw.githubusercontent.com/apapamarkou/lazy-weather/main/install | bash
 curl -sSL https://raw.githubusercontent.com/apapamarkou/lazy-snapper/main/install | bash
 curl -fsSL https://raw.githubusercontent.com/apapamarkou/lazy-package/main/install | bash
-curl -sSL https://raw.githubusercontent.com/apapamarkou/full-screen-launcher/main/install | bash
+curl -sSL https://raw.githubusercontent.com/apapamarkou/linxpad/main/install | bash
 
 curl -fsS https://dl.brave.com/install.sh | sh
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
