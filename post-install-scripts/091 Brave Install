@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+clear 
+
+# Ask if they want to install Brave
+read -p "Do you want to install Brave? (Y/n) " -n
+
+if [[ $REPLY =~ ^[Nn]$ ]]; then
+    echo "Brave installation skipped."
+    exit 0
+fi
+
+curl -fsS https://dl.brave.com/install.sh | sh
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+sudo dnf update
+sudo dnf install -y code
+sudo dnf install -y https://download.cdn.viber.com/desktop/Linux/viber.rpm
+
+echo "✅ Brave, VS Code, and Viber installed!"
+sleep 2

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+
+clear 
+
+# Ask if they want to install AnyDesk
+read -p "Do you want to install AnyDesk? (Y/n) " -n
+
+if [[ $REPLY =~ ^[Nn]$ ]]; then
+    echo "AnyDesk installation skipped."
+    exit 0
+fi
+
+sudo tee /etc/yum.repos.d/AnyDesk-Fedora.repo << "EOF" 
+[anydesk]
+name=AnyDesk Fedora - stable
+baseurl=http://rpm.anydesk.com/fedora/$basearch/
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
+EOF
+sudo dnf install -y anydesk
+
+echo "✅ AnyDesk installed!"
+sleep 2

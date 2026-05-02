@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+clear
+# Ask if they want to install starship
+read -p "Do you want to install Starship? (Y/n) " -n
+
+if [[ $REPLY =~ ^[Nn]$ ]]; then
+    echo "Starship installation skipped."
+    exit 0
+fi
+
+curl -sS https://starship.rs/install.sh | sh
+
+echo "✅ Starship installed!"
+sleep 2

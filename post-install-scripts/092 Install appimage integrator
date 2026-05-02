@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+clear
+# Ask if they want to install AppImage Integrator
+read -p "Do you want to install AppImage Integrator? (Y/n) "-n
+
+if [[ $REPLY =~ ^[Nn]$ ]]; then
+    echo "AppImage Integrator installation skipped."
+    exit 0
+fi
+
+
+curl -fsSL https://raw.githubusercontent.com/apapamarkou/appimage-integrator/main/install | bash
+
+echo "✅ AppImage Integrator installed!"
+sleep 2

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+clear
+# Ask if they want to install Lazy Package
+read -p "Do you want to install Lazy Package? (Y/n) " -n
+if [[ $REPLY =~ ^[Nn]$ ]]; then
+    echo "Lazy Package installation skipped."
+    exit 0
+fi 
+
+curl -fsSL https://raw.githubusercontent.com/apapamarkou/lazy-package/main/install | bash
+
+echo "Lazy Package installed successfully!"
+sleep 2

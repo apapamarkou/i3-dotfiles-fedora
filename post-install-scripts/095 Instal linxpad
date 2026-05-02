@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+clear
+# Ask if they want to install Lazy Snapper
+read -p "Do you want to install Lazy Snapper? (Y/n) " -n
+if [[ $REPLY =~ ^[Nn]$ ]]; then
+    echo "Lazy Snapper installation skipped."
+    exit 0
+fi
+
+git clone https://github.com/apapamarkou/linxpad
+cd linxpad
+./install
+cd ..
+rm -rf linxpad
+
+echo "✅ LinxPad installed!"
+sleep 2

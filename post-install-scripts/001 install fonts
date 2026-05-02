@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+clear
+echo "Installing JetBrains Mono Nerd Font..."
+
+curl -L -o /tmp/JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+mkdir -p ~/.local/share/fonts
+unzip -o /tmp/JetBrainsMono.zip -d ~/.local/share/fonts
+rm /tmp/JetBrainsMono.zip
+
+echo "Updating font cache..."
+fc-cache -fv
+
+echo "JetBrains Mono Nerd Font installed successfully!"
+sleep 4

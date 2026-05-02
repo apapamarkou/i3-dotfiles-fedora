@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+clear
+# Ask if they want to install Lazy Snapper
+read -p "Do you want to install Lazy Snapper? (Y/n) " -n
+if [[ $REPLY =~ ^[Nn]$ ]]; then
+    echo "Lazy Snapper installation skipped."
+    exit 0
+fi
+
+curl -sSL https://raw.githubusercontent.com/apapamarkou/lazy-snapper/main/install | bash
+
+echo "✅ Lazy Snapper installed!"
+sleep 2
