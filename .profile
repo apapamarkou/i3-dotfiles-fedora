@@ -32,3 +32,19 @@ export NNN_FIFO=/tmp/nnn.fifo
 
 export PS1='$ '
 
+# locale-config-start
+export LANG=en_US.UTF-8
+export LC_CTYPE="el_GR.UTF-8"
+export LC_NUMERIC="el_GR.UTF-8"
+export LC_TIME="el_GR.UTF-8"
+export LC_COLLATE=C
+export LC_MONETARY="el_GR.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_PAPER="el_GR.UTF-8"
+export LC_NAME="el_GR.UTF-8"
+export LC_ADDRESS="el_GR.UTF-8"
+export LC_TELEPHONE="el_GR.UTF-8"
+export LC_MEASUREMENT="el_GR.UTF-8"
+export LC_IDENTIFICATION="el_GR.UTF-8"
+export LC_ALL=
+# locale-config-end

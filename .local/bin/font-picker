@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# 1. Παίρνουμε τη λίστα των γραμματοσειρών (μόνο το Family Name)
+# 2. Τις ταξινομούμε και αφαιρούμε τα διπλότυπα
+# 3. Τις στέλνουμε στο rofi
+selected_font=$(fc-list : family | cut -d, -f1 | sort -u | rofi -dmenu -i -p "Select Font  ")
+
+# Αν επιλεγεί κάτι, το αντιγράφουμε στο clipboard
+if [ -n "$selected_font" ]; then
+    echo -n "$selected_font" | xclip -selection clipboard
+    notify-send "Font Copied!" "$selected_font has been copied to clipboard."
+fi

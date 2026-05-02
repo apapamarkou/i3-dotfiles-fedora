@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# fsl-watch — watch .desktop application directories and trigger fsl --rescan
+# after a 2-second debounce so rapid bulk changes only cause one rescan.
+set -euo pipefail
+
+WATCH_DIRS=(
+    "/usr/share/applications"
+    "/usr/local/share/applications"
+    "${HOME}/.local/share/applications"
+)
+
+# Filter to only existing directories
+EXISTING_DIRS=()
+for d in "${WATCH_DIRS[@]}"; do
+    [ -d "$d" ] && EXISTING_DIRS+=("$d")
+done
+
+if [ ${#EXISTING_DIRS[@]} -eq 0 ]; then
+    echo "fsl-watch: no application directories found, exiting." >&2
+    exit 1
+fi
+
+if ! command -v inotifywait &>/dev/null; then
+    echo "fsl-watch: inotifywait not found. Install inotify-tools." >&2
+    exit 1
+fi
+
+if ! command -v fsl &>/dev/null; then
+    echo "fsl-watch: fsl not found in PATH." >&2
+    exit 1
+fi
+
+_TIMER_PID=""
+
+_cancel_timer() {
+    if [ -n "$_TIMER_PID" ] && kill -0 "$_TIMER_PID" 2>/dev/null; then
+        kill "$_TIMER_PID" 2>/dev/null || true
+    fi
+    _TIMER_PID=""
+}
+
+_schedule_rescan() {
+    _cancel_timer
+    ( sleep 2 && fsl --rescan ) &
+    _TIMER_PID=$!
+}
+
+trap '_cancel_timer' EXIT INT TERM
+
+inotifywait \
+    --monitor \
+    --quiet \
+    --event create,delete,moved_to,moved_from,modify \
+    --include '\.desktop$' \
+    "${EXISTING_DIRS[@]}" \
+| while read -r _dir _event _file; do
+    _schedule_rescan
+done

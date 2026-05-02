@@ -32,6 +32,6 @@
 
 ! --- FONT & PADDING ---
 xterm*faceName: JetBrainsMono Nerd Font:style=Regular
-xterm*faceSize: 12
+xterm*faceSize: 14
 xterm*internalBorder: 15
 

@@ -114,10 +114,9 @@ bindsym $mod+Shift+Return exec $file_manager
 bindsym $mod+d exec --no-startup-id $app_launcher
 bindsym $mod+e exec --no-startup-id $emoji_picker
 bindsym $mod+b exec $display_keys
-bindsym Shift+slash exec welcome
+bindsym $mod+slash exec welcome
 # bindsym $mod+x exec --no-startup-id rofi-power
 # bindsym Print exec --no-startup-id rofi-grab
-
 
 
 
@@ -310,7 +309,7 @@ for_window [class="weatherWindow"] floating enable, move position center
 for_window [class="pkgWindow"] floating enable, move position center
 for_window [class="updateWindow"] floating enable, move position center
 for_window [class="snapshotsWindow"] floating enable, move position center
-
+# for_window [class="fsl"] fullscreen enable
 for_window [class="FehViewerOverviews"] floating enable, move position center
 
 

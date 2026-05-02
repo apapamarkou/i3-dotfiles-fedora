@@ -52,3 +52,7 @@ Pictures/Wallpapers
 .local/bin/welcome
 .local/bin/system-update
 Documents/Manual
+.local/bin/font-picker
+.local/bin/fsl-watch
+.local/bin/language-selector
+.local/bin/pygmentize

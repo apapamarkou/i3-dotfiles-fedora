@@ -42,4 +42,4 @@ while [[ "$choice" != "exit" ]]; do
   esac
 done
 
-notify-send "Tip" "Press ? anytime for this menu" 
+notify-send "Tip" "Press super+? anytime for this menu" 

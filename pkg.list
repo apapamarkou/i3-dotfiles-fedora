@@ -1,3 +1,13 @@
+ModemManager
+NetworkManager
+NetworkManager-adsl
+NetworkManager-bluetooth
+NetworkManager-ppp
+NetworkManager-wifi
+NetworkManager-wwan
+PackageKit-gstreamer-plugin
+ShellCheck
+Thunar
 aajohan-comfortaa-fonts
 abrt-cli
 abrt-desktop
@@ -31,10 +41,12 @@ brcmfmac-firmware
 breeze-gtk
 breeze-icon-theme
 brightnessctl
+btrfs-assistant
 btrfs-progs
 bzip2
 calcurse
 cargo
+cava
 chrony
 cifs-utils
 cirrus-audio-firmware
@@ -98,6 +110,7 @@ ghostscript
 git
 glibc
 glibc-all-langpacks
+glibc-langpack-el
 glx-utils
 gnome-disk-utility
 gnome-keyring-pam
@@ -196,7 +209,6 @@ mesa-vulkan-drivers
 micro
 microcode_ctl
 minicom
-ModemManager
 mousepad
 mpage
 mpv
@@ -207,13 +219,7 @@ ncdu
 ncurses
 neovim
 net-tools
-NetworkManager
-NetworkManager-adsl
 network-manager-applet
-NetworkManager-bluetooth
-NetworkManager-ppp
-NetworkManager-wifi
-NetworkManager-wwan
 nfs-utils
 nmap-ncat
 nnn
@@ -224,11 +230,10 @@ numlockx
 nvidia-gpu-firmware
 nvme-cli
 nxpwireless-firmware
+open-vm-tools-desktop
 opensc
 openssh-clients
 openssh-server
-open-vm-tools-desktop
-PackageKit-gstreamer-plugin
 paps
 parted
 pass
@@ -278,7 +283,6 @@ selinux-policy-targeted
 setroubleshoot
 setup
 shadow-utils
-ShellCheck
 shfmt
 shim-ia32
 shim-x64
@@ -303,7 +307,6 @@ systemd-udev
 tar
 tcpdump
 teamd
-Thunar
 time
 tiwilink-firmware
 traceroute
@@ -326,8 +329,8 @@ wpa_supplicant
 x264
 xdotool
 xdpyinfo
-xfce4-clipman-plugin
 xfce-polkit
+xfce4-clipman-plugin
 xfsprogs
 xkill
 xorg-x11-drv-amdgpu

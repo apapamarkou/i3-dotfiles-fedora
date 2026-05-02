@@ -2,7 +2,7 @@
 @theme "/dev/null"
 
 configuration {
-    font: "Inter 11";
+    font: "Inter 13";
     show-icons: true;
     icon-theme: "breeze-dark";
     dmenu-intl: true;
