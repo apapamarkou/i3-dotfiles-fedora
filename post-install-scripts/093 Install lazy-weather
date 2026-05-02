@@ -11,4 +11,4 @@ fi
 curl -sSL https://raw.githubusercontent.com/apapamarkou/lazy-weather/main/install | bash
 
 echo "✅ Lazy Weather installed!"
-sleep 2
+sleep 2 

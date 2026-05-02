@@ -13,4 +13,4 @@ fi
 curl -fsSL https://raw.githubusercontent.com/apapamarkou/appimage-integrator/main/install | bash
 
 echo "✅ AppImage Integrator installed!"
-sleep 2
+sleep 2 
